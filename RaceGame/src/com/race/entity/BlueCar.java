@@ -6,11 +6,10 @@ import org.newdawn.slick.SlickException;
 
 public class BlueCar extends Car {
 	protected BlueCar(int x, int y) {
-		super(x, y, 100, 0.01f, 1, 0.5f);
+		super(x, y, 100, 0.05f, 5, 0.01f);
 		try {
 			image = new Image("/data/plane.png");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
