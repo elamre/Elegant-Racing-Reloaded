@@ -51,7 +51,7 @@ public abstract class Car extends BaseEntity {
 	 *            The time that has passed.
 	 */
 	public void changeDirection(float rotation, float deltaT) {
-		this.rotation += deltaT * rotation;
+		this.rotation += deltaT * rotation * speed * 0.1 + rotation / 10;
 	}
 
 	/**
@@ -104,16 +104,21 @@ public abstract class Car extends BaseEntity {
 			speedUp(deltaT);
 		}
 		x += speed * deltaT
-				* java.lang.Math.sin(java.lang.Math.toRadians(rotation));
+				* java.lang.Math.sin(java.lang.Math.toRadians(rotation)) * 0.1;
 		y -= speed * deltaT
-				* java.lang.Math.cos(java.lang.Math.toRadians(rotation));
+				* java.lang.Math.cos(java.lang.Math.toRadians(rotation)) * 0.1;
 		frictionUpdate(deltaT);
 		update(deltaT);
 	}
 
 	public void frictionUpdate(float deltaT) {
-//		if (!moving)
-//			speed -= deltaT * friction;
+		if (!moving) {
+			if (speed > 0)
+				speed -= deltaT * friction;
+			if (speed < 0.1) {
+				speed = 0;
+			}
+		}
 	}
 
 	/**
