@@ -20,9 +20,9 @@ public abstract class BaseEntity {
 	/** The width of the entity */
 	protected int width = 1;
 	/** The rotation of the image */
-	float rotation = 0;
+	protected float rotation = 0;
 	/** The scale of the image */
-	float scale = 1;
+	protected float scale = 1;
 
 	/**
 	 * @param x

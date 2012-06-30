@@ -2,7 +2,9 @@ package com.race.entity;
 
 import org.newdawn.slick.Graphics;
 
+import com.race.entity.cars.RedCar;
 import com.race.main.ButtonHandler;
+import com.race.system.Camera;
 
 public class Player {
 	/** Starting positions of the car */
@@ -32,6 +34,7 @@ public class Player {
 			if (ButtonHandler.getButtonHandler().getLeft()) {
 				selectedCar.changeDirection(-0.2f, deltaT);
 			}
+			Camera.getCamera().updateCam(selectedCar);
 		}
 	}
 

@@ -51,7 +51,7 @@ public abstract class Car extends BaseEntity {
 	 *            The time that has passed.
 	 */
 	public void changeDirection(float rotation, float deltaT) {
-		this.rotation += deltaT * rotation * speed * 0.1 + rotation / 10;
+		this.rotation += deltaT * rotation * speed * 0.1 + rotation / 8;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public abstract class Car extends BaseEntity {
 	 */
 	public void speedUp(float deltaT) {
 		if (speed < maxSpeed)
-			speed += deltaT * acceleration;
+			speed += deltaT * acceleration * 2 * friction;
 	}
 
 	/**
