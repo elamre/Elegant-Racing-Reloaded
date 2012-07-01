@@ -2,6 +2,8 @@ package com.race.entity;
 
 import org.newdawn.slick.Graphics;
 
+import com.race.effects.SliptrackHandler;
+
 public abstract class Car extends BaseEntity {
 	/** The current speed */
 	float speed;
@@ -52,6 +54,10 @@ public abstract class Car extends BaseEntity {
 	 */
 	public void changeDirection(float rotation, float deltaT) {
 		this.rotation += deltaT * rotation * speed * 0.1 + rotation / 8;
+		x += deltaT * java.lang.Math.sin(java.lang.Math.toRadians(rotation))
+				* speed * 0.01;
+		y -= deltaT * java.lang.Math.cos(java.lang.Math.toRadians(rotation))
+				* speed * 0.01;
 	}
 
 	/**
@@ -73,6 +79,27 @@ public abstract class Car extends BaseEntity {
 	public void speedUp(float deltaT) {
 		if (speed < maxSpeed)
 			speed += deltaT * acceleration * 2 * friction;
+	}
+
+	/**
+	 * The break function. this will slowly stop the car
+	 * 
+	 * @param deltaT
+	 *            The time that has passed.
+	 */
+	public void stop(float deltaT) {
+		if (speed > 0) {
+			speed -= deltaT * friction * 0.5f;
+			SliptrackHandler.getSliptrackHandler().addTrack(this);
+			x += speed * deltaT
+					* java.lang.Math.sin(java.lang.Math.toRadians(rotation))
+					* 0.01;
+			y -= speed * deltaT
+					* java.lang.Math.cos(java.lang.Math.toRadians(rotation))
+					* 0.01;
+		}
+		if (speed < 0.1)
+			speed = 0;
 	}
 
 	/**
@@ -111,10 +138,16 @@ public abstract class Car extends BaseEntity {
 		update(deltaT);
 	}
 
+	/**
+	 * This function will update the friction so te car will slow down
+	 * 
+	 * @param deltaT
+	 *            The time that has passed.
+	 */
 	public void frictionUpdate(float deltaT) {
 		if (!moving) {
 			if (speed > 0)
-				speed -= deltaT * friction;
+				speed -= deltaT * friction * 0.1f;
 			if (speed < 0.1) {
 				speed = 0;
 			}

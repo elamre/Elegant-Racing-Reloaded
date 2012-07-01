@@ -10,11 +10,13 @@ public class ButtonHandler {
 	private boolean backward = false;
 	private boolean left = false;
 	private boolean right = false;
+	private boolean stop = false;
 
 	public void update(GameContainer gc) {
 		forward = false;
 		backward = false;
 		left = false;
+		stop = false;
 		right = false;
 		if (gc.getInput().isKeyDown(Configuration.FORWARD)) {
 			forward = true;
@@ -27,6 +29,9 @@ public class ButtonHandler {
 		}
 		if (gc.getInput().isKeyDown(Configuration.RIGHT)) {
 			right = true;
+		}
+		if (gc.getInput().isKeyDown(Configuration.BREAK)) {
+			stop = true;
 		}
 	}
 
@@ -51,5 +56,9 @@ public class ButtonHandler {
 			handler = new ButtonHandler();
 		}
 		return handler;
+	}
+
+	public boolean getStop() {
+		return stop;
 	}
 }

@@ -39,6 +39,13 @@ public abstract class BaseEntity {
 	}
 
 	/**
+	 * @return returns the rotation of the entity.
+	 */
+	public float getRotation() {
+		return rotation;
+	}
+
+	/**
 	 * @return returns the x value.
 	 */
 	public float getX() {

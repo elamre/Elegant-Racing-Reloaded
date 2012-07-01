@@ -34,6 +34,9 @@ public class Player {
 			if (ButtonHandler.getButtonHandler().getLeft()) {
 				selectedCar.changeDirection(-0.2f, deltaT);
 			}
+			if(ButtonHandler.getButtonHandler().getStop()){
+				selectedCar.stop(deltaT);
+			}
 			Camera.getCamera().updateCam(selectedCar);
 		}
 	}
@@ -59,6 +62,7 @@ public class Player {
 	 */
 	public void draw(Graphics g) {
 		if (selectedCar != null) {
+			g.fillRect(selectedCar.getX(), selectedCar.getY(), 1, 1);
 			selectedCar.draw(g);
 		}
 	}

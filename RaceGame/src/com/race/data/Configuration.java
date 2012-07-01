@@ -32,6 +32,6 @@ public class Configuration {
 	public static int RIGHT = Keyboard.KEY_D;
 
 	/** The reload button */
-	public static int RELOAD = Keyboard.KEY_R;
+	public static int BREAK = Keyboard.KEY_SPACE;
 	// -----------------------------------------------//
 }
